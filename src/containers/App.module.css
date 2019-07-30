@@ -1,0 +1,10 @@
+.green{
+  color: green;
+}
+.upper{
+  text-transform: uppercase;
+  transition:all 0.5s;
+}
+.upper:hover{
+  font-size: 50px;
+}
