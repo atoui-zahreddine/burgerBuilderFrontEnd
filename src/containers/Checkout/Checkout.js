@@ -2,7 +2,7 @@ import React from "react";
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
 import ContactData from "./ContactData/ContactData";
 import { Route } from "react-router-dom";
-import Aux from "../../hoc/Aux/Aux";
+import Aux from "../../hoc/Auxiliary/Auxiliary";
 
 class Checkout extends React.Component {
   state = {

@@ -2,7 +2,7 @@ import React from 'react';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import Logo from '../../Logo/Logo';
 import Classes from './SlideDrawer.module.css';
-import Aux from "../../../hoc/Aux/Aux";
+import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 
 const slideDrawer = (props) => {

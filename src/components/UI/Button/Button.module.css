@@ -13,13 +13,18 @@
 .Success {
   color: #5c9210;
   border: 1px solid #5c9210;
-  transition: all 0.3s ease-in;
+  transition: all 0.2s ease-in;
+}
+.Disabled {
+  color: #535353;
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 .Danger {
   color: #944317;
   border: 1px solid #944317;
-  transition: all 0.3s ease-in;
+  transition: all 0.2s ease-in;
 }
 .Button.Success:hover {
   background-color: #5c9210;

@@ -7,7 +7,7 @@ const navigationItems = () => {
     return (
             <ul className={Classes.NavigationItems}>
                 <li className={Classes.NavigationItem} ><NavLink exact activeClassName={Classes.active} to='/'>Burger Builder</NavLink></li>
-                <li className={Classes.NavigationItem} ><NavLink exact activeClassName={Classes.active}  to='/checkout'>Checkout</NavLink></li>
+                <li className={Classes.NavigationItem} ><NavLink exact activeClassName={Classes.active}  to='/order'>Order</NavLink></li>
             </ul>
     );
 }

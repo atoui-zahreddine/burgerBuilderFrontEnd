@@ -1,3 +1,7 @@
 .Order{
-
+    box-shadow: 0px 1px 3px #ccc;
+    border:1px solid #eee;
+    margin: 0 auto;
+    width: 90%;
+    padding: 10px;
 }
