@@ -24,7 +24,7 @@ const buildControls = props => {
       </p>
       {controls.map(control => (
         <BuildControl
-          disabled={props.ingredients[control.type] <= 0}
+          disabled={props.ingredients[control.type] === 0}
           key={control.label}
           label={control.label}
           added={() => props.ingredientAdded(control.type)}
