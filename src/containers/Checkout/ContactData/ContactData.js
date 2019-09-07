@@ -101,10 +101,10 @@ class ContactData extends Component {
     formValid: false,
     loading: false
   };
+
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return nextState.orderForm !== this.state.orderForm;
   }
-
 
   orderHandler = e => {
     e.preventDefault();
@@ -150,6 +150,7 @@ class ContactData extends Component {
     }
     return isValid;
   };
+
   inputChangeHandler = (event, inputIdentifier) => {
     const updatedOrderForm = { ...this.state.orderForm };
     const updatedFormElement = {
@@ -171,6 +172,7 @@ class ContactData extends Component {
 
     this.setState({ orderForm: updatedOrderForm, formValid: formValid });
   };
+
   inputBlurHandler=(inputIdentifier)=>{
     const updatedOrderForm= {...this.state.orderForm};
     const updatedFormElement={...this.state.orderForm[inputIdentifier]};
@@ -179,6 +181,7 @@ class ContactData extends Component {
     this.setState({orderForm:updatedOrderForm});
 
 }
+
   render() {
     const orderFormArray = [];
     for (let key in this.state.orderForm) {

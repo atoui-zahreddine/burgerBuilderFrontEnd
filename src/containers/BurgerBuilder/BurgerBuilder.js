@@ -5,17 +5,17 @@ import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 //import axios from "../../axios-orders";
-import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions';
+import { connect } from "react-redux";
+import * as BurgerBuilderActions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spiner";
 
 class BurgerBuilder extends Component {
   state = {
-    purchasing: false,
-    loading: false,
-    error: false
+    purchasing: false
   };
-  
+  componentWillMount() {
+    this.props.onInitHandler();
+  }
   purchaseHandler = () => {
     this.setState({ purchasing: true });
   };
@@ -23,13 +23,12 @@ class BurgerBuilder extends Component {
     this.setState({ purchasing: false });
   };
   purchaseContinueHandler = () => {
-    
     this.props.history.push("/checkout");
   };
   render() {
     let orderSummary = null;
 
-    let burger = this.state.error ? (
+    let burger = this.props.error ? (
       <p style={{ textAlign: "center", fontSize: "30px", color: "red" }}>
         ingredients can't be loaded !!!
       </p>
@@ -77,18 +76,23 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
   return {
-    ings:state.ingredients,
-    totalPrice:state.totalPrice
-  }
-
-}
+    ings: state.burgerBuilder.ingredients,
+    totalPrice: state.burgerBuilder.totalPrice,
+    error: state.burgerBuilder.error
+  };
+};
 
 const mapDispatchToProps = dispatch => {
-  
-  return{
-    onAddHandler : (ingName) => dispatch({type:actionTypes.ADD_INGREDIENT,ingName:ingName}),
-    onRemoveHandler : (ingName) => dispatch({type:actionTypes.REMOVE_INGREDIENT,ingName:ingName})
-  }
-}
+  return {
+    onAddHandler: ingName =>
+      dispatch(BurgerBuilderActions.addIngredient(ingName)),
+    onRemoveHandler: ingName =>
+      dispatch(BurgerBuilderActions.removeIngredient(ingName)),
+    onInitHandler: () => dispatch(BurgerBuilderActions.initIgredients())
+  };
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(BurgerBuilder);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BurgerBuilder);
