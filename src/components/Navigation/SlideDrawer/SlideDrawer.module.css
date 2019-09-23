@@ -1,28 +1,28 @@
-.SlideDrawer{
-    max-width: 70%;
-    width: 280px;
-    position: fixed;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 200;
-    background-color: white;
-    padding: 32px ;
-    box-sizing: border-box;
-    transition: transform 0.3s ease-out;
+.SlideDrawer {
+  width: 100%;
+  position: fixed;
+  height: 250px;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  background-color: white;
+  padding: 32px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-out;
 }
-@media (min-width: 500px){
-    .SlideDrawer{
-        display: none;
-    }
+@media (min-width: 500px) {
+  .SlideDrawer {
+    display: none;
+  }
 }
-.open{
-    transform: translateX(0);
+.open {
+  transform: translateY(0);
 }
-.close{
-    transform: translateX(-100%);
+.close {
+  transform: translateY(-100%);
 }
-.Logo{
-    height: 11%;
-    margin-bottom: 32px;
+.Logo {
+  height: 40%;
+  text-align: center;
+  margin-bottom: 25px;
 }
