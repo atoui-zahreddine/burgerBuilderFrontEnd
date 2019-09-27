@@ -3,6 +3,9 @@ import Input from "../../components/UI/Form/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import EmailValidator from "email-validator";
 import Classes from "./Auth.module.css";
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
+import Spinner from "../../components/UI/Spinner/Spiner";
 
 class Auth extends React.Component {
   state = {
@@ -38,7 +41,8 @@ class Auth extends React.Component {
         value: ""
       }
     },
-    formValid: false
+    formValid: false,
+    isSignup: true
   };
   checkValidity = (value, rules) => {
     let isValid = true;
@@ -55,8 +59,13 @@ class Auth extends React.Component {
     }
     return isValid;
   };
-  orderHandler = e => {
+  submitHandler = e => {
     e.preventDefault();
+    this.props.onAuth(
+      this.state.controls.email.value,
+      this.state.controls.password.value,
+      this.state.isSignup
+    );
   };
 
   inputChangeHandler = (event, inputIdentifier) => {
@@ -82,7 +91,8 @@ class Auth extends React.Component {
 
     this.setState({ controls: updatedForm, formValid: formValid });
   };
-
+  switchAuthModeHandler = () =>
+    this.setState(prevState => ({ isSignup: !prevState.isSignup }));
   inputBlurHandler = inputIdentifier => {
     const updatedOrderForm = { ...this.state.controls };
     const updatedFormElement = { ...this.state.controls[inputIdentifier] };
@@ -98,32 +108,58 @@ class Auth extends React.Component {
         config: { ...this.state.controls[key] }
       });
     }
-
+    let authForm = (
+      <form onSubmit={this.submitHandler}>
+        {orderFormArray.map(item => {
+          return (
+            <Input
+              key={item.id}
+              name={item.id}
+              elementType={item.config.elementType}
+              elementConfig={item.config.elementConfig}
+              value={item.config.value}
+              shouldValidate={item.config.validation}
+              invalid={item.config.valid}
+              touched={item.config.touched}
+              errorMessage={item.config.errorMessage}
+              clicked={() => this.inputBlurHandler(item.id)}
+              changed={event => this.inputChangeHandler(event, item.id)}
+            />
+          );
+        })}
+        <Button btnType="Success" clicked={this.onAuth}>
+          Login
+        </Button>
+      </form>
+    );
+    if (this.props.loading) {
+      authForm = <Spinner />;
+    }
     return (
-      <div>
-        <form className={Classes.Auth}>
-          {orderFormArray.map(item => {
-            return (
-              <Input
-                key={item.id}
-                name={item.id}
-                elementType={item.config.elementType}
-                elementConfig={item.config.elementConfig}
-                value={item.config.value}
-                shouldValidate={item.config.validation}
-                invalid={item.config.valid}
-                touched={item.config.touched}
-                errorMessage={item.config.errorMessage}
-                clicked={() => this.inputBlurHandler(item.id)}
-                changed={event => this.inputChangeHandler(event, item.id)}
-              />
-            );
-          })}
-          <Button btnType="Success">Login</Button>
-        </form>
+      <div className={Classes.Auth}>
+        {authForm}
+        <Button btnType="Danger" clicked={this.switchAuthModeHandler}>
+          Switch to
+          {this.state.isSignup ? " Sign In" : " Sign Up"}
+        </Button>
       </div>
     );
   }
 }
 
-export default Auth;
+const mapStateToProps = state => {
+  return {
+    loading: state.auth.loading
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    onAuth: (email, password, isSignup) =>
+      dispatch(actions.auth(email, password, isSignup))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Auth);

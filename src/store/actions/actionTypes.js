@@ -14,5 +14,5 @@ export const FETCH_ORDERS_FAIL = "FETCH_ORDERS_FAIL";
 export const FETCH_ORDERS_START = "FETCH_ORDERS_START";
 
 export const AUTH_START = "AUTH_START";
-export const AUTH_SUCCESS = "AUTH_START";
-export const AUTH_FAIL = "AUTH_START";
+export const AUTH_SUCCESS = "AUTH_SUCCESS";
+export const AUTH_FAIL = "AUTH_FAIL";
