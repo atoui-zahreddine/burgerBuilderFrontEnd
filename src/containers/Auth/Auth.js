@@ -4,6 +4,7 @@ import Button from "../../components/UI/Button/Button";
 import EmailValidator from "email-validator";
 import Classes from "./Auth.module.css";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import * as actions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spiner";
 
@@ -61,11 +62,19 @@ class Auth extends React.Component {
   };
   submitHandler = e => {
     e.preventDefault();
-    this.props.onAuth(
-      this.state.controls.email.value,
-      this.state.controls.password.value,
-      this.state.isSignup
-    );
+    if (this.state.formValid) {
+      this.props.onAuth(
+        this.state.controls.email.value,
+        this.state.controls.password.value,
+        this.state.isSignup
+      );
+    } else {
+      const formData = { ...this.state.controls };
+      for (let formElement in formData) {
+        formData[formElement] = { ...formData[formElement], touched: true };
+      }
+      this.setState({ controls: formData });
+    }
   };
 
   inputChangeHandler = (event, inputIdentifier) => {
@@ -110,6 +119,11 @@ class Auth extends React.Component {
     }
     let authForm = (
       <form onSubmit={this.submitHandler}>
+        {this.props.error ? (
+          <p style={{ border: "1px solid red", color: "red" }}>
+            <strong> {this.props.error.message}</strong>
+          </p>
+        ) : null}
         {orderFormArray.map(item => {
           return (
             <Input
@@ -119,7 +133,7 @@ class Auth extends React.Component {
               elementConfig={item.config.elementConfig}
               value={item.config.value}
               shouldValidate={item.config.validation}
-              invalid={item.config.valid}
+              valid={item.config.valid}
               touched={item.config.touched}
               errorMessage={item.config.errorMessage}
               clicked={() => this.inputBlurHandler(item.id)}
@@ -128,15 +142,17 @@ class Auth extends React.Component {
           );
         })}
         <Button btnType="Success" clicked={this.onAuth}>
-          Login
+          {this.state.isSignup ? " Sign Up" : " Sign In"}
         </Button>
       </form>
     );
     if (this.props.loading) {
       authForm = <Spinner />;
     }
+
     return (
       <div className={Classes.Auth}>
+        {this.props.isAuthenticated ? <Redirect to="/" /> : null}
         {authForm}
         <Button btnType="Danger" clicked={this.switchAuthModeHandler}>
           Switch to
@@ -149,7 +165,9 @@ class Auth extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    loading: state.auth.loading
+    loading: state.auth.loading,
+    error: state.auth.error,
+    isAuthenticated: state.auth.token !== null
   };
 };
 const mapDispatchToProps = dispatch => {

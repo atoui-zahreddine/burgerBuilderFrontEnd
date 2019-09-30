@@ -3,6 +3,7 @@ import Aux from "../Auxiliary/Auxiliary";
 import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 import SlideDrawer from "../../components/Navigation/SlideDrawer/SlideDrawer";
 import Classes from "./Layout.module.css";
+import { connect } from "react-redux";
 
 class Layout extends React.Component {
   state = {
@@ -17,8 +18,12 @@ class Layout extends React.Component {
   render() {
     return (
       <Aux>
-        <Toolbar clicked={this.slideDrawerToggledHandler} />
+        <Toolbar
+          isAuth={this.props.isAuthenticated}
+          clicked={this.slideDrawerToggledHandler}
+        />
         <SlideDrawer
+          isAuth={this.props.isAuthenticated}
           open={this.state.showSlideDrawer}
           closed={this.slideDrawerClosedHandler}
         />
@@ -27,4 +32,11 @@ class Layout extends React.Component {
     );
   }
 }
-export default Layout;
+
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  };
+};
+
+export default connect(mapStateToProps)(Layout);

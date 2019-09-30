@@ -7,6 +7,7 @@ import Orders from "./Orders/Orders";
 import Auth from "./Auth/Auth";
 import WithErrorHandler from "../hoc/withErrorHandler/withErrorHandler";
 import axios from "../axios-orders";
+import Logout from "./Auth/Logout/Logout";
 
 class App extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class App extends React.Component {
           <Route path="/checkout" component={Checkout} />
           <Route path="/order" component={Orders} />
           <Route path="/auth" component={Auth} />
+          <Route path="/logout" component={Logout} />
         </Layout>
       </BrowserRouter>
     );

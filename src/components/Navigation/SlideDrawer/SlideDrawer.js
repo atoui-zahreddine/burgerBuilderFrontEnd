@@ -18,7 +18,10 @@ const slideDrawer = props => {
           <Logo />
         </div>
         <nav>
-          <NavigationItems clicked={props.closed} />
+          <NavigationItems
+            isAuthenticated={props.isAuth}
+            clicked={props.closed}
+          />
         </nav>
       </div>
     </Aux>

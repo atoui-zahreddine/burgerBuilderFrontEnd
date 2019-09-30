@@ -1,14 +1,13 @@
 import React from "react";
 import Classes from "./Input.module.css";
 
-
 const input = props => {
   let inputElement = null;
   let classesInputElement = [Classes.InputElement];
-  let errorMessage=null;
-  
-  if (props.invalid === false && props.touched  && props.shouldValidate  ) {
-    errorMessage=<p className={Classes.ErrorMessage}>{props.errorMessage}</p>;
+  let errorMessage = null;
+
+  if (props.valid === false && props.touched && props.shouldValidate) {
+    errorMessage = <p className={Classes.ErrorMessage}>{props.errorMessage}</p>;
     classesInputElement.push(Classes.Invalid);
   }
   switch (props.elementType) {
