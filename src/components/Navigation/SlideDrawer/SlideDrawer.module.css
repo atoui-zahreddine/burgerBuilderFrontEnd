@@ -1,7 +1,7 @@
 .SlideDrawer {
   width: 100%;
   position: fixed;
-  height: 250px;
+  height: 300px;
   top: 0;
   left: 0;
   z-index: 200;
