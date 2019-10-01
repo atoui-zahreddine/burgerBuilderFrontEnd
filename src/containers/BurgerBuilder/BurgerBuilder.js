@@ -16,6 +16,7 @@ class BurgerBuilder extends Component {
   componentWillMount() {
     this.props.onInitHandler();
   }
+
   purchaseHandler = () => {
     if (this.props.isAuthenticated) {
       this.setState({ purchasing: true });
@@ -43,7 +44,10 @@ class BurgerBuilder extends Component {
     if (this.props.ings) {
       burger = (
         <Aux>
-          <Burger ingredients={this.props.ings} />
+          <Burger
+            ingredients={this.props.ings}
+            resetBuildingBurger={this.props.onResetBuildingBurger}
+          />
           <BuildControls
             isAuth={this.props.isAuthenticated}
             ingredients={this.props.ings}
@@ -96,7 +100,9 @@ const mapDispatchToProps = dispatch => {
     onRemoveHandler: ingName =>
       dispatch(BurgerBuilderActions.removeIngredient(ingName)),
     onInitHandler: () => dispatch(BurgerBuilderActions.initIgredients()),
-    onInitPurchase: () => dispatch(BurgerBuilderActions.purchaseInit())
+    onInitPurchase: () => dispatch(BurgerBuilderActions.purchaseInit()),
+    onResetBuildingBurger: () =>
+      dispatch(BurgerBuilderActions.resetBuildingBurger())
   };
 };
 

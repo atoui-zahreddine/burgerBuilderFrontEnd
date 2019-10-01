@@ -41,3 +41,8 @@ export const initIgredients = () => {
       });
   };
 };
+export const resetBuildingBurger = () => {
+  return {
+    type: actionTypes.RESET_BUILDING_BURGER
+  };
+};
