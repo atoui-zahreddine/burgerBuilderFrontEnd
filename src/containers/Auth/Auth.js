@@ -54,7 +54,11 @@ class Auth extends React.Component {
       this.props.onSetAuthRedirectPath("/");
     }
   }
-
+  componentWillUnmount() {
+    if (this.props.redirectPath === "/") {
+      this.props.onResetIngredients();
+    }
+  }
   checkValidity = (value, rules) => {
     let isValid = true;
     if (rules) {
@@ -189,7 +193,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onAuth: (email, password, isSignup) =>
       dispatch(actions.auth(email, password, isSignup)),
-    onSetAuthRedirectPath: path => dispatch(actions.setAuthRedirectPath(path))
+    onSetAuthRedirectPath: path => dispatch(actions.setAuthRedirectPath(path)),
+    onResetIngredients: () => dispatch(actions.initIgredients())
   };
 };
 

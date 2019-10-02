@@ -53,7 +53,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    resetIngredientsHandler: () => dispatch(actionCreators.resetIngredients())
+    resetIngredientsHandler: () => dispatch(actionCreators.initIgredients())
   };
 };
 

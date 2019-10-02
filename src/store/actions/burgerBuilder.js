@@ -1,5 +1,4 @@
 import * as actionTypes from "./actionTypes";
-import axios from "../../axios-orders";
 
 export const addIngredient = ingName => {
   return {
@@ -13,32 +12,9 @@ export const removeIngredient = ingName => {
     ingName: ingName
   };
 };
-export const resetIngredients = () => {
-  return {
-    type: actionTypes.RESET_INGREDIENTS
-  };
-};
-export const setIngredients = ingredients => {
-  return {
-    type: actionTypes.SET_INGREDIENTS,
-    ingredients: ingredients
-  };
-};
-export const fetchIngredientFailed = () => {
-  return {
-    type: actionTypes.FETCH_INGREDIENTS_FAILED
-  };
-};
 export const initIgredients = () => {
-  return dispatch => {
-    axios
-      .get("https://react-burger-builder-b3cce.firebaseio.com/ingredients.json")
-      .then(Response => {
-        dispatch(setIngredients(Response.data));
-      })
-      .catch(() => {
-        dispatch(fetchIngredientFailed());
-      });
+  return {
+    type: actionTypes.SET_INGREDIENTS
   };
 };
 export const resetBuildingBurger = () => {
