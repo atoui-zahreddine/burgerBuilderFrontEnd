@@ -2,12 +2,15 @@
   width: 100%;
   padding: 5px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 .Label {
   font-weight: bold;
   display: block;
   font-family: inherit;
   margin-bottom: 8px;
+  text-align: left;
   float: left;
   text-transform: capitalize;
 }
@@ -27,15 +30,18 @@
   outline: none;
   background-color: #ccc;
 }
-
+.Container {
+  display: flex;
+  position: relative;
+}
 .Invalid {
   border: 1px solid red;
   background-color: #fda49a;
 }
 .Valid {
   position: absolute;
-  right: 5px;
-  top: 34.2px;
+  top: 12%;
+  right: 0;
   background-repeat: no-repeat;
   background-position: 20px 20px;
   animation: easy-in 0.5s 1;

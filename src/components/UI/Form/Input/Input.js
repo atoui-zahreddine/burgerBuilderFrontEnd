@@ -81,7 +81,7 @@ const input = props => {
         {props.name}
       </label>
 
-      <div style={{ position: "relative" }}>
+      <div className={Classes.Container}>
         {inputElement}
         {props.isSignup || props.isCheckout ? validIcon : null}
       </div>
