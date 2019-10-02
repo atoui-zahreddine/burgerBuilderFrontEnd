@@ -80,8 +80,11 @@ const input = props => {
       <label className={Classes.Label} htmlFor={props.name}>
         {props.name}
       </label>
-      {inputElement}
-      {props.isSignup || props.isCheckout ? validIcon : null}
+
+      <div style={{ position: "relative" }}>
+        {inputElement}
+        {props.isSignup || props.isCheckout ? validIcon : null}
+      </div>
       {errorMessage}
     </div>
   );
