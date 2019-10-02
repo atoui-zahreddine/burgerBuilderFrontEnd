@@ -17,7 +17,8 @@ class ContactData extends Component {
           placeholder: "Your Name"
         },
         validation: {
-          required: true
+          required: true,
+          minLength: 2
         },
         touched: false,
         errorMessage: "Name is required",
@@ -46,7 +47,8 @@ class ContactData extends Component {
           placeholder: "Street"
         },
         validation: {
-          required: true
+          required: true,
+          minLength: 2
         },
         errorMessage: "Street is required",
         touched: false,
@@ -76,7 +78,8 @@ class ContactData extends Component {
           placeholder: "Country"
         },
         validation: {
-          required: true
+          required: true,
+          minLength: 2
         },
         touched: false,
         errorMessage: "Country is required",
@@ -178,12 +181,13 @@ class ContactData extends Component {
           return (
             <Input
               key={item.id}
+              isCheckout
               name={item.id}
               elementType={item.config.elementType}
               elementConfig={item.config.elementConfig}
               value={item.config.value}
               shouldValidate={item.config.validation}
-              invalid={item.config.valid}
+              valid={item.config.valid}
               touched={item.config.touched}
               errorMessage={item.config.errorMessage}
               clicked={() => this.inputBlurHandler(item.id)}

@@ -138,6 +138,7 @@ class Auth extends React.Component {
           return (
             <Input
               key={item.id}
+              isSignup={this.state.isSignup}
               name={item.id}
               elementType={item.config.elementType}
               elementConfig={item.config.elementConfig}

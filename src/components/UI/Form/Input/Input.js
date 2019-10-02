@@ -64,13 +64,24 @@ const input = props => {
         />
       );
   }
-
+  let validIcon = null;
+  if (props.valid && props.shouldValidate) {
+    validIcon = (
+      <img
+        className={Classes.Valid}
+        src="https://img.icons8.com/color/30/000000/verified-account.png"
+        alt="valid icon"
+        title="valid "
+      ></img>
+    );
+  }
   return (
     <div className={Classes.Input}>
       <label className={Classes.Label} htmlFor={props.name}>
         {props.name}
       </label>
       {inputElement}
+      {props.isSignup || props.isCheckout ? validIcon : null}
       {errorMessage}
     </div>
   );
