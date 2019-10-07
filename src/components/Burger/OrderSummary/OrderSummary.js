@@ -1,6 +1,7 @@
 import React from "react";
 import Aux from "../../../hoc/Auxiliary/Auxiliary";
 import Button from "../../UI/Button/Button";
+import classes from "./OrderSummary.module.css";
 
 const orderSummary = props => {
   return (
@@ -19,12 +20,14 @@ const orderSummary = props => {
         Total Price :<strong> {props.price.toFixed(2)} $ </strong>
       </p>
       <p>continue to checkout ?</p>
-      <Button btnType="Danger" clicked={props.purchaseCancel}>
-        Cancel
-      </Button>
-      <Button btnType="Success" clicked={props.purchaseContinue}>
-        Continue
-      </Button>
+      <div className={classes.Container}>
+        <Button btnType="Danger" clicked={props.purchaseCancel}>
+          Cancel
+        </Button>
+        <Button btnType="Success" clicked={props.purchaseContinue}>
+          Continue
+        </Button>
+      </div>
     </Aux>
   );
 };

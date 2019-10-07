@@ -94,11 +94,15 @@ class ContactData extends Component {
             { value: "cheepest", displayValue: "Cheepest" }
           ]
         },
-        value: "fastest "
+        value: "fastest"
       }
     },
     formValid: false
   };
+  componentDidMount() {
+    const element = document.getElementById("contactData");
+    element.scrollIntoView({ behavior: "smooth" });
+  }
   orderHandler = e => {
     e.preventDefault();
     const formData = {};
@@ -210,7 +214,7 @@ class ContactData extends Component {
     }
 
     return (
-      <div className={classes.ContactData}>
+      <div className={classes.ContactData} id="contactData">
         <h4>Enter your Contact Data</h4>
         {form}
       </div>

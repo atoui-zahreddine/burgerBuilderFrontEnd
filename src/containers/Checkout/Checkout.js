@@ -12,6 +12,11 @@ class Checkout extends React.Component {
   }
   checkoutContinuedHandler = () => {
     this.props.history.replace("/checkout/contact-data");
+
+    const element = document.getElementById("contactData");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
   checkoutCanceledHandler = () => {
     this.props.history.goBack();

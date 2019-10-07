@@ -27,20 +27,20 @@ class App extends React.Component {
   render() {
     let routes = (
       <Switch>
-        <Route path="/auth" component={asyncAuth} />
+        <Route path="/auth" exact component={asyncAuth} />
         <Route path="/" exact component={BurgerBuilder} />
-        <Redirect to="/" />
+        <Redirect to="/"></Redirect>
       </Switch>
     );
     if (this.props.isAuthenticated) {
       routes = (
         <Switch>
           <Route path="/checkout" component={asyncCheckout} />
-          <Route path="/order" component={asyncOrders} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/auth" component={asyncAuth} />
+          <Route path="/order" exact component={asyncOrders} />
+          <Route path="/logout" exact component={Logout} />
+          <Route path="/auth" exact component={asyncAuth} />
           <Route path="/" exact component={BurgerBuilder} />
-          <Redirect to="/" />
+          <Redirect to="/"></Redirect>
         </Switch>
       );
     }
