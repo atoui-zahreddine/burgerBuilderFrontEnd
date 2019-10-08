@@ -1,12 +1,12 @@
 .SlideDrawer {
   width: 100%;
   position: fixed;
-  height: 300px;
+  height: auto;
   top: 0;
   left: 0;
   z-index: 200;
   background-color: white;
-  padding: 32px;
+  padding: 20px 32px 15px;
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
 }
@@ -22,7 +22,7 @@
   transform: translateY(-100%);
 }
 .Logo {
-  height: 40%;
+  height: 80px;
   text-align: center;
   margin-bottom: 25px;
 }

@@ -18,7 +18,7 @@ const burger = props => {
     transformedIngredients = <p>please add some ingrediens !</p>;
   }
   return (
-    <div className={styles.Burger}>
+    <div className={props.classe ? props.classe :styles.Burger}>
       <BurgerIngredient type="bread-top" />
       {transformedIngredients}
       <BurgerIngredient type="bread-bottom" />

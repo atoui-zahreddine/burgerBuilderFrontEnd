@@ -1,5 +1,6 @@
 import React from 'react';
 import Classes from './Order.module.css';
+import Burger from "../Burger/Burger";
 
 const order = (props)=> {
     let ingredients=[];
@@ -8,7 +9,10 @@ const order = (props)=> {
     }
     return (
         <div className={Classes.Order}>
-            <p>ingredients :{ingredients.join(' ')}</p>
+            <div>
+                <Burger ingredients={props.ingredients} classe={Classes.Burger}/>
+            </div>
+            <p> <span> ingredients :</span>{ingredients.join(' ')}</p>
             <p>Price :USD <strong>{props.price}</strong> </p>
         </div>
     );

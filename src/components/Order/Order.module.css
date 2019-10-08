@@ -1,7 +1,35 @@
 .Order{
-    box-shadow: 0px 1px 3px #ccc;
+    box-shadow: 0px 1px 3px #eee;
     border:1px solid #eee;
-    margin: 0 auto;
+    margin: 20px auto;
+    border-radius: 5px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,.3);
     width: 90%;
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Burger{
+    width: 150px;
+    height: 120px;
+    margin-right: 20px;
+}
+.Order span{
+    display: block;
+}
+.Order p{
+    margin-right: 20px;
+}
+@media (max-width: 500px){
+    .Order{
+
+        flex-direction: column;
+    }
+    .Burger{
+        margin-right: 0px;
+        overflow: auto;
+        width: 300px ;
+        height: 250px;
+    }
 }
