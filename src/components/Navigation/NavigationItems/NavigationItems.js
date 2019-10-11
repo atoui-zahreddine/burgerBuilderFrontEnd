@@ -12,8 +12,8 @@ const navigationItems = props => {
       </li>
       {props.isAuthenticated ? (
         <li className={Classes.NavigationItem} onClick={props.clicked}>
-          <NavLink exact activeClassName={Classes.active} to="/order">
-            Order
+          <NavLink exact activeClassName={Classes.active} to="/orders">
+            Orders
           </NavLink>
         </li>
       ) : null}

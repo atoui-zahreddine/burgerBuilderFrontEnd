@@ -11,11 +11,7 @@ class Orders extends React.Component {
     this.props.onFetchOrder(this.props.token, this.props.userId);
   }
   render() {
-    let orders = (
-      <div style={{ marginTop: "150px" }}>
-        <Spinner />
-      </div>
-    );
+    let orders = <Spinner />;
     if (this.props.loading === false) {
       if (this.props.orders.length !== 0) {
         orders = this.props.orders.map(order => (
@@ -41,7 +37,7 @@ class Orders extends React.Component {
         );
       }
     }
-    return <div>{orders}</div>;
+    return <div className={classes.Orders}>{orders}</div>;
   }
 }
 const mapStateToProps = state => {

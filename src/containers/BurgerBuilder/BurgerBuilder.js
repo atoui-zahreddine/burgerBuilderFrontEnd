@@ -78,7 +78,7 @@ class BurgerBuilder extends Component {
         >
           {orderSummary}
         </Modal>
-        <div style={{ marginTop: "150px" }}>{burger}</div>
+        <div>{burger}</div>
       </Aux>
     );
   }

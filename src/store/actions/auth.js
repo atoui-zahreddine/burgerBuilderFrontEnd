@@ -88,3 +88,9 @@ export const authCheckState = () => {
     }
   };
 };
+
+export const removeAuthErrors = ()=>{
+  return{
+    type:actionTypes.REMOVE_AUTH_ERRORS
+  }
+}

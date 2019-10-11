@@ -12,8 +12,8 @@ const order = (props)=> {
             <div>
                 <Burger ingredients={props.ingredients} classe={Classes.Burger}/>
             </div>
-            <p> <span> ingredients :</span>{ingredients.join(' ')}</p>
-            <p>Price :USD <strong>{props.price}</strong> </p>
+            <p className={Classes.Ingredients}><span> ingredients :</span>{ingredients.join(' ')}</p>
+            <p className={Classes.Price}><span>Price:</span><strong>{props.price} $</strong> </p>
         </div>
     );
 }

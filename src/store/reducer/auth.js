@@ -10,6 +10,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.REMOVE_AUTH_ERRORS:
+      return {
+        ...state,
+        error: null
+      };
     case actionTypes.SET_AUTH_REDIRECT_PATH:
       return {
         ...state,

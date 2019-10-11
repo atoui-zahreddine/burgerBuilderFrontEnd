@@ -15,4 +15,12 @@
   .Container {
     font-size: 18px;
   }
+  .Orders {
+    flex-direction: column;
+  }
+}
+.Orders {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

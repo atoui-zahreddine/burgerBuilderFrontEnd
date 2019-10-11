@@ -36,7 +36,7 @@ class App extends React.Component {
       routes = (
         <Switch>
           <Route path="/checkout" component={asyncCheckout} />
-          <Route path="/order" exact component={asyncOrders} />
+          <Route path="/orders" exact component={asyncOrders} />
           <Route path="/logout" exact component={Logout} />
           <Route path="/auth" exact component={asyncAuth} />
           <Route path="/" exact component={BurgerBuilder} />
