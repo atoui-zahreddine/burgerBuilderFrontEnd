@@ -19,9 +19,8 @@ class Modal extends React.Component {
           style={{
             transform: this.props.show
               ? "translateY(-50%)"
-              : "translateY(-100vh)",
-            opacity: this.props.show ? "1" : "0",
-            display:this.props.show ? "block":"none"
+              : "translateY(-1000vh)",
+            opacity: this.props.show ? "1" : "0"
           }}
         >
           {this.props.children}

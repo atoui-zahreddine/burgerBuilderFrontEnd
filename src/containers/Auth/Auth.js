@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as actions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spiner";
+import ErrorMessage from "../../components/Auth/AuthErrorMessage/ErrorMessage";
 
 class Auth extends React.Component {
   state = {
@@ -134,9 +135,7 @@ class Auth extends React.Component {
     let authForm = (
       <form onSubmit={this.submitHandler}>
         {this.props.error ? (
-          <p style={{ border: "1px solid red", color: "red" }}>
-            <strong> {this.props.error.message}</strong>
-          </p>
+          <ErrorMessage error={this.props.error.message} />
         ) : null}
         {orderFormArray.map(item => {
           return (

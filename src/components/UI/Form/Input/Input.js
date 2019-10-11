@@ -71,7 +71,6 @@ const input = props => {
         className={Classes.Valid}
         src="https://img.icons8.com/color/30/000000/verified-account.png"
         alt="valid icon"
-        title="valid "
       ></img>
     );
   }

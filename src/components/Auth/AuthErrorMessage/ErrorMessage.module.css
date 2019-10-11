@@ -1,0 +1,15 @@
+.Error {
+  color: #d8000c;
+  background-color: #ffd2d2;
+  padding: 10px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+.ErrorIcon {
+  margin-right: 8px;
+}
+.ErrorMessage {
+  margin: 0;
+  font-size: 16px;
+}

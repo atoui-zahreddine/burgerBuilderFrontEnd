@@ -101,7 +101,7 @@ class ContactData extends Component {
   };
   componentDidMount() {
     const element = document.getElementById("contactData");
-    element.scrollIntoView({ behavior: "smooth" });
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
   }
   orderHandler = e => {
     e.preventDefault();
@@ -214,10 +214,13 @@ class ContactData extends Component {
     }
 
     return (
-      <div className={classes.ContactData} id="contactData">
-        <h4>Enter your Contact Data</h4>
-        {form}
-      </div>
+      <React.Fragment>
+        <div id="contactData"></div>
+        <div className={classes.ContactData}>
+          <h4>Enter your Contact Data</h4>
+          {form}
+        </div>
+      </React.Fragment>
     );
   }
 }
