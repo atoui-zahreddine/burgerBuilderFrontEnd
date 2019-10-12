@@ -20,33 +20,54 @@ const asyncCheckout = asyncComponent(() => {
   return import("../containers/Checkout/Checkout");
 });
 
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+  const isAuthenticated = localStorage.getItem("token") !== null;
+  return (
+    <Route
+      {...rest}
+      render={props => {
+        return isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        );
+      }}
+    />
+  );
+};
+
 class App extends React.Component {
   componentDidMount() {
     this.props.onAuthCheckState();
   }
+
   render() {
-    let routes = (
-      <Switch>
-        <Route path="/auth" exact component={asyncAuth} />
-        <Route path="/" exact component={BurgerBuilder} />
-        <Redirect to="/"></Redirect>
-      </Switch>
-    );
-    if (this.props.isAuthenticated) {
-      routes = (
-        <Switch>
-          <Route path="/checkout" component={asyncCheckout} />
-          <Route path="/orders" exact component={asyncOrders} />
-          <Route path="/logout" exact component={Logout} />
-          <Route path="/auth" exact component={asyncAuth} />
-          <Route path="/" exact component={BurgerBuilder} />
-          <Redirect to="/"></Redirect>
-        </Switch>
-      );
-    }
     return (
       <BrowserRouter>
-        <Layout>{routes}</Layout>
+        <Layout>
+          <Switch>
+            <Route path="/auth" exact component={asyncAuth} />
+            <Route path="/" exact component={BurgerBuilder} />
+            <ProtectedRoute
+              path="/checkout"
+              component={asyncCheckout}
+              isAuthenticated={this.props.isAuthenticated}
+            />
+            <ProtectedRoute
+              path="/orders"
+              exact
+              component={asyncOrders}
+              isAuthenticated={this.props.isAuthenticated}
+            />
+            <ProtectedRoute
+              path="/logout"
+              exact
+              component={Logout}
+              isAuthenticated={this.props.isAuthenticated}
+            />
+            <Redirect to="/" />
+          </Switch>
+        </Layout>
       </BrowserRouter>
     );
   }
@@ -54,7 +75,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token
   };
 };
 
