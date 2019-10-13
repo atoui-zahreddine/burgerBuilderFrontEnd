@@ -73,12 +73,6 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.auth.token
-  };
-};
-
 const mapDispatchToProps = dispatch => {
   return {
     onAuthCheckState: () => dispatch(actions.authCheckState())
@@ -86,6 +80,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(WithErrorHandler(App, axios));
