@@ -13,7 +13,7 @@ class BurgerBuilder extends Component {
   state = {
     purchasing: false
   };
-  componentWillMount() {
+  componentDidMount() {
     this.props.onInitHandler();
   }
 
