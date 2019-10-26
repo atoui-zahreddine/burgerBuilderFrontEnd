@@ -22,7 +22,8 @@ class BurgerBuilder extends Component {
   componentDidUpdate() {
     if (this.props.OrderSuccess) {
       notification["success"]({
-        message: "Order Success",
+        message: "Order Successfuly made",
+        description: "Please visit the orders page to check your orders",
         duration: 5
       });
     }

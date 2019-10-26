@@ -15,7 +15,7 @@ const order = props => {
         {ingredients.join(" ")}
       </p>
       <p className={Classes.Price}>
-        <span>Price:</span>
+        <span>Price</span>
         <strong>{props.price} $</strong>{" "}
       </p>
     </div>

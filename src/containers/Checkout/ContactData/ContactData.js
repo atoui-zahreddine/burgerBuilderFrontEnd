@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Button from "../../../components/UI/Button/Button";
 import classes from "./ContactData.module.css";
 import { connect } from "react-redux";
-import EmailValidator from "email-validator";
 import Spinner from "../../../components/UI/Spinner/Spiner";
 import Input from "../../../components/UI/Form/Input/Input";
 import * as actions from "../../../store/actions/index";
@@ -25,21 +24,6 @@ class ContactData extends Component {
         valid: false,
         value: ""
       },
-      email: {
-        elementType: "input",
-        elementConfig: {
-          type: "email",
-          placeholder: "Your E-Mail"
-        },
-        validation: {
-          required: true,
-          email: true
-        },
-        errorMessage: "Email is required",
-        touched: false,
-        valid: false,
-        value: ""
-      },
       street: {
         elementType: "input",
         elementConfig: {
@@ -58,7 +42,7 @@ class ContactData extends Component {
       zipCode: {
         elementType: "input",
         elementConfig: {
-          type: "text",
+          type: "number",
           placeholder: "ZIP Code"
         },
         validation: {
@@ -132,9 +116,6 @@ class ContactData extends Component {
       }
       if (rules.maxLength) {
         isValid = value.trim().length <= rules.maxLength && isValid;
-      }
-      if (rules.email) {
-        isValid = isValid && EmailValidator.validate(value);
       }
     }
     return isValid;

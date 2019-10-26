@@ -14,7 +14,7 @@ const burger = props => {
       return arr.concat(el);
     }, []);
   if (transformedIngredients.length === 0) {
-    //props.resetBuildingBurger();
+    props.resetBuildingBurger();
     transformedIngredients = <p>please add some ingrediens !</p>;
   }
   return (

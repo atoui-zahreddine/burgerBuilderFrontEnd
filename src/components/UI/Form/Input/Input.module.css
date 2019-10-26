@@ -14,7 +14,11 @@
   float: left;
   text-transform: capitalize;
 }
-
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .InputElement {
   outline: none;
   border: 1px solid #ccc;

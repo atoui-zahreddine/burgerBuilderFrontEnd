@@ -35,7 +35,7 @@ export const purchaseBurger = (orderData, token) => {
         dispatch(setOrderSuccessMessage(true));
         setTimeout(() => {
           dispatch(setOrderSuccessMessage(false));
-        }, 5000);
+        }, 3000);
       })
       .catch(error => {
         dispatch(purchaseBurgerFail(error));

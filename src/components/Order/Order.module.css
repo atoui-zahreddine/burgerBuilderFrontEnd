@@ -10,7 +10,7 @@
   align-items: center;
 }
 .Burger {
-  margin-top:40px;
+  margin-top: 40px;
   width: 150px;
   height: 120px;
   margin-right: 20px;
@@ -18,8 +18,8 @@
 .Order span {
   display: block;
 }
-.Ingredients{
-    margin-right: 10px;
+.Ingredients {
+  margin-right: 10px;
 }
 
 @media (max-width: 500px) {
@@ -34,8 +34,8 @@
     height: 250px;
   }
 }
-@media (max-width: 940px) and (min-width: 501px){
-    .Order {
-        width: 90%;
-    }
+@media (max-width: 940px) and (min-width: 501px) {
+  .Order {
+    width: 90%;
+  }
 }
