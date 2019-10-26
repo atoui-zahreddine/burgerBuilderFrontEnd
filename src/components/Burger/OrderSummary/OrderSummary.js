@@ -6,7 +6,9 @@ import classes from "./OrderSummary.module.css";
 const orderSummary = props => {
   return (
     <Aux>
-      <h3>Your order</h3>
+      <h1>
+        <strong> Your Order</strong>{" "}
+      </h1>
       <p>A delicious burger with the following ingredients :</p>
       <ul>
         {Object.keys(props.ingredients).map(igKey => (

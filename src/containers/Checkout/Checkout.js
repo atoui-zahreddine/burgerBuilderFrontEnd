@@ -23,7 +23,7 @@ class Checkout extends React.Component {
   };
   render() {
     let summary = <Redirect to="/" />;
-    if (this.props.ingredients) {
+    if (this.props.building) {
       const purchase = this.props.purchase ? <Redirect to="/" /> : null;
       summary = (
         <Aux>
@@ -53,7 +53,8 @@ const mapStateToProps = state => {
   return {
     ingredients: state.burgerBuilder.ingredients,
     totalPrice: state.burgerBuilder.totalPrice,
-    purchase: state.order.purchase
+    purchase: state.order.purchase,
+    building: state.burgerBuilder.building
   };
 };
 const mapDispatchToProps = dispatch => {

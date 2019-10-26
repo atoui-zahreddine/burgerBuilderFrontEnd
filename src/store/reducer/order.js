@@ -4,11 +4,17 @@ const initialState = {
   orders: [],
   loading: false,
   error: null,
-  purchase: false
+  purchase: false,
+  showOrderSuccessMessage: false
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SHOW_ORDER_MESSAGE_SUCCESS:
+      return {
+        ...state,
+        showOrderSuccessMessage: action.show
+      };
     case actionTypes.FETCH_ORDERS_START:
       return {
         ...state,

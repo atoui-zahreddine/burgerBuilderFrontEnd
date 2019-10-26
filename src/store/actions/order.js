@@ -19,19 +19,30 @@ export const purchaseBurgerStart = () => {
     type: actionTypes.PURCHASE_BURGER_START
   };
 };
+
+export const setOrderSuccessMessage = show => {
+  return {
+    type: actionTypes.SHOW_ORDER_MESSAGE_SUCCESS,
+    show: show
+  };
+};
 export const purchaseBurger = (orderData, token) => {
   return dispatch => {
     dispatch(purchaseBurgerStart());
     Axios.post("/orders.json?auth=" + token, orderData)
       .then(response => {
         dispatch(purchaseBurgerSucces(response.data.name, orderData));
+        dispatch(setOrderSuccessMessage(true));
+        setTimeout(() => {
+          dispatch(setOrderSuccessMessage(false));
+        }, 5000);
       })
       .catch(error => {
-        console.log(error);
         dispatch(purchaseBurgerFail(error));
       });
   };
 };
+
 export const purchaseInit = () => {
   return {
     type: actionTypes.PURCHASE_INIT

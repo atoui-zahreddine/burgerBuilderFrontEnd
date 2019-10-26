@@ -4,7 +4,7 @@ import Aux from "../../hoc/Auxiliary/Auxiliary";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
-//import axios from "../../axios-orders";
+import { notification } from "antd";
 import { connect } from "react-redux";
 import * as BurgerBuilderActions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spiner";
@@ -15,6 +15,18 @@ class BurgerBuilder extends Component {
   };
   componentDidMount() {
     this.props.onInitHandler();
+    if (this.props.OrderSuccess) {
+      this.openNotificationWithIcon("success");
+    }
+  }
+  componentDidUpdate() {
+    if (this.props.OrderSuccess) {
+      notification["success"]({
+        message: "Order Success",
+        duration: 5
+      });
+    }
+    return null;
   }
 
   purchaseHandler = () => {
@@ -89,7 +101,8 @@ const mapStateToProps = state => {
     ings: state.burgerBuilder.ingredients,
     totalPrice: state.burgerBuilder.totalPrice,
     error: state.burgerBuilder.error,
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
+    OrderSuccess: state.order.showOrderSuccessMessage
   };
 };
 

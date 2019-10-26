@@ -14,11 +14,11 @@ const burger = props => {
       return arr.concat(el);
     }, []);
   if (transformedIngredients.length === 0) {
-    props.resetBuildingBurger();
+    //props.resetBuildingBurger();
     transformedIngredients = <p>please add some ingrediens !</p>;
   }
   return (
-    <div className={props.classe ? props.classe :styles.Burger}>
+    <div className={props.classe ? props.classe : styles.Burger}>
       <BurgerIngredient type="bread-top" />
       {transformedIngredients}
       <BurgerIngredient type="bread-bottom" />
