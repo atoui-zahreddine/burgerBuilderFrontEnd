@@ -44,7 +44,7 @@ class Auth extends React.Component {
       }
     },
     formValid: false,
-    isSignup: true
+    isSignup: false
   };
 
   componentDidMount() {
