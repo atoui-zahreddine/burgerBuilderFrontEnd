@@ -85,6 +85,8 @@ export const authCheckState = () => {
           )
         );
       }
+    }else{
+      dispatch(authFail(null));
     }
   };
 };
