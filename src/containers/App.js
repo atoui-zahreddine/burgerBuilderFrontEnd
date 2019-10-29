@@ -20,8 +20,7 @@ const asyncCheckout = asyncComponent(() => {
   return import("../containers/Checkout/Checkout");
 });
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const isAuthenticated = localStorage.getItem("token") !== null;
+const ProtectedRoute = ({ component: Component, isAuthenticated , ...rest }) => {
   return (
     <Route
       {...rest}
@@ -37,13 +36,22 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 };
 
 class App extends React.Component {
+  state={
+    authCheck: true
+  }
   componentDidMount() {
     this.props.onAuthCheckState();
+  }
+  componentDidUpdate() {
+    if(this.props.authCheck === false && this.state.authCheck){
+      this.setState({authCheck:false})
+    }
   }
 
   render() {
     return (
       <BrowserRouter>
+      {(!this.state.authCheck)?
         <Layout>
           <Switch>
             <Route path="/auth" exact component={asyncAuth} />
@@ -68,10 +76,18 @@ class App extends React.Component {
             <Redirect to="/" />
           </Switch>
         </Layout>
+      :null}
       </BrowserRouter>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    isAuthenticated:state.auth.token !== null,
+    authCheck:state.auth.authCheck
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -80,6 +96,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(WithErrorHandler(App, axios));

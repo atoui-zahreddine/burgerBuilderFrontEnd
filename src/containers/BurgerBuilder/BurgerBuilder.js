@@ -15,19 +15,19 @@ class BurgerBuilder extends Component {
   };
   componentDidMount() {
     this.props.onInitHandler();
-    if (this.props.OrderSuccess) {
-      this.openNotificationWithIcon("success");
-    }
   }
-  componentDidUpdate() {
-    if (this.props.OrderSuccess) {
+  static getDerivedStateFromProps(props,state){
+    if (props.OrderSuccess) {
       notification["success"]({
-        message: "Order Successfuly made",
+        message: "Order Successfully made",
         description: "Please visit the orders page to check your orders",
         duration: 5
       });
     }
-    return null;
+    return state;
+  }
+  componentDidUpdate() {
+
   }
 
   purchaseHandler = () => {
