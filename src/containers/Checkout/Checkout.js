@@ -7,6 +7,10 @@ import * as actionCreators from "../../store/actions/index";
 import Aux from "../../hoc/Auxiliary/Auxiliary";
 
 class Checkout extends React.Component {
+  componentDidMount(){
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
   componentWillUnmount() {
     this.props.resetIngredientsHandler();
   }
@@ -19,7 +23,7 @@ class Checkout extends React.Component {
     }
   };
   checkoutCanceledHandler = () => {
-    this.props.history.goBack();
+    this.props.history.replace('/');
   };
   render() {
     let summary = <Redirect to="/" />;

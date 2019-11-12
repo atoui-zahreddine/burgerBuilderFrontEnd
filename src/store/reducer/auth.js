@@ -48,7 +48,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         token: null,
         userId: null,
-        error: null
+        error: null,
+        authCheck:false
       };
     default:
       return state;

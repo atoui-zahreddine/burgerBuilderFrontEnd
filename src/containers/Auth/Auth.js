@@ -48,6 +48,8 @@ class Auth extends React.Component {
   };
 
   componentDidMount() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     if (this.props.buildingBurger && this.props.redirectPath === "/") {
       this.props.onSetAuthRedirectPath("/checkout");
     }

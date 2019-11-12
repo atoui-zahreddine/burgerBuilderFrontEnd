@@ -8,6 +8,8 @@ import classes from "./Orders.module.css";
 
 class Orders extends React.Component {
   componentDidMount() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     this.props.onFetchOrder(this.props.token, this.props.userId);
   }
   render() {

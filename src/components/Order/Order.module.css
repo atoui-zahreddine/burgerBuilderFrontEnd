@@ -1,13 +1,14 @@
 .Order {
   border: 1px solid #eee;
-  margin: 20px auto;
   border-radius: 5px;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
-  width: 40%;
+  margin: 20px 0;
+  width: 49%;
   padding: 10px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  min-width: 280px;
 }
 .Burger {
   margin-top: 40px;
@@ -24,8 +25,9 @@
 
 @media (max-width: 500px) {
   .Order {
-    width: 80%;
+    width: 90%;
     flex-direction: column;
+    margin: 20px auto;
   }
   .Burger {
     margin-right: 0px;
@@ -37,5 +39,6 @@
 @media (max-width: 940px) and (min-width: 501px) {
   .Order {
     width: 90%;
+    margin: 20px auto;
   }
 }

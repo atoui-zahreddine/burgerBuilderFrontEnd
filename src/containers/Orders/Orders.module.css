@@ -17,9 +17,12 @@
   }
   .Orders {
     flex-direction: column;
+    padding: 0;
   }
 }
 .Orders {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: wrap;
+  padding: 20px;
+  justify-content: space-between;
 }

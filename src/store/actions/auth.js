@@ -84,6 +84,9 @@ export const authCheckState = () => {
             (expirationDate.getTime() - new Date().getTime()) / 1000
           )
         );
+      }else{
+        dispatch(authFail(null));
+        dispatch(authLogout());
       }
     }else{
       dispatch(authFail(null));
