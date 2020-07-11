@@ -10,7 +10,7 @@ class Orders extends React.Component {
   componentDidMount() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    this.props.onFetchOrder(this.props.token, this.props.userId);
+    this.props.onFetchOrder(this.props.token);
   }
   render() {
     let orders = <Spinner />;
@@ -46,14 +46,13 @@ const mapStateToProps = state => {
   return {
     orders: state.order.orders,
     loading: state.order.loading,
-    token: state.auth.token,
-    userId: state.auth.userId
+    token: state.auth.token
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchOrder: (token, userId) =>
-      dispatch(actions.fetchOrders(token, userId))
+    onFetchOrder: (token) =>
+      dispatch(actions.fetchOrders(token))
   };
 };
 

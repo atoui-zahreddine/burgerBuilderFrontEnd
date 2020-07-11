@@ -4,7 +4,7 @@ import BurgerBuilder from "../containers/BurgerBuilder/BurgerBuilder";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import WithErrorHandler from "../hoc/withErrorHandler/withErrorHandler";
-import axios from "../axios-orders";
+import axios from "../axios";
 import Logout from "./Auth/Logout/Logout";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
@@ -38,7 +38,8 @@ const ProtectedRoute = ({ component: Component, isAuthenticated , ...rest }) => 
 class App extends React.Component {
   state={
     authCheck: true
-  }
+  };
+
   componentDidMount() {
     this.props.onAuthCheckState();
   }

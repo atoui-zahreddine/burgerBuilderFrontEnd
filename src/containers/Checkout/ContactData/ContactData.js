@@ -75,7 +75,7 @@ class ContactData extends Component {
         elementConfig: {
           options: [
             { value: "fastest", displayValue: "Fastest" },
-            { value: "cheepest", displayValue: "Cheepest" }
+            { value: "cheapest", displayValue: "cheapest" }
           ]
         },
         value: "fastest"
@@ -83,23 +83,26 @@ class ContactData extends Component {
     },
     formValid: false
   };
+
   componentDidMount() {
     const element = document.getElementById("contactData");
     element.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+
   orderHandler = e => {
     e.preventDefault();
     const formData = {};
+
     for (let formElementIdentifier in this.state.orderForm) {
       formData[formElementIdentifier] = this.state.orderForm[
         formElementIdentifier
       ].value;
     }
+
     const order = {
       ingredients: this.props.ingredients,
       totalPrice: +this.props.totalPrice.toFixed(2),
-      orderData: formData,
-      userId: this.props.userId
+      orderData: formData
     };
 
     this.props.onOrderBurger(order, this.props.token);
@@ -166,7 +169,6 @@ class ContactData extends Component {
           return (
             <Input
               key={item.id}
-              isCheckout
               name={item.id}
               elementType={item.config.elementType}
               elementConfig={item.config.elementConfig}
@@ -196,7 +198,7 @@ class ContactData extends Component {
 
     return (
       <React.Fragment>
-        <div id="contactData"></div>
+        <div id="contactData"/>
         <div className={classes.ContactData}>
           <h4>Enter your Contact Data</h4>
           {form}
@@ -209,8 +211,7 @@ class ContactData extends Component {
 const mapStateToProps = state => {
   return {
     loading: state.order.loading,
-    token: state.auth.token,
-    userId: state.auth.userId
+    token: state.auth.token
   };
 };
 

@@ -28,9 +28,6 @@ class BurgerBuilder extends Component {
     }
     return state;
   }
-  componentDidUpdate() {
-
-  }
 
   purchaseHandler = () => {
     if (this.props.isAuthenticated) {

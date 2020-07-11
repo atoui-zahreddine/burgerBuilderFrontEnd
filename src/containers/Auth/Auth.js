@@ -50,9 +50,11 @@ class Auth extends React.Component {
   componentDidMount() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    if (this.props.buildingBurger && this.props.redirectPath === "/") {
+
+    if ( this.props.buildingBurger && this.props.redirectPath === "/" ) {
       this.props.onSetAuthRedirectPath("/checkout");
     }
+
     if (!this.props.buildingBurger && this.props.redirectPath !== "/") {
       this.props.onSetAuthRedirectPath("/");
     }
@@ -120,8 +122,10 @@ class Auth extends React.Component {
 
     this.setState({ controls: updatedForm, formValid: formValid });
   };
+
   switchAuthModeHandler = () =>
     this.setState(prevState => ({ isSignup: !prevState.isSignup }));
+
   inputBlurHandler = inputIdentifier => {
     const updatedOrderForm = { ...this.state.controls };
     const updatedFormElement = { ...this.state.controls[inputIdentifier] };
@@ -129,6 +133,7 @@ class Auth extends React.Component {
     updatedOrderForm[inputIdentifier] = updatedFormElement;
     this.setState({ controls: updatedOrderForm });
   };
+
   render() {
     const orderFormArray = [];
     for (let key in this.state.controls) {

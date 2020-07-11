@@ -1,11 +1,10 @@
 import * as actionTypes from "./actionTypes";
-import Axios from "../../axios-orders";
+import Axios from "../../axios";
 
-export const purchaseBurgerSucces = (id, orderData) => {
+export const purchaseBurgerSuccess = (orderData) => {
   return {
-    type: actionTypes.PURCHASE_BURGER_SUCCES,
-    orderData: orderData,
-    orderid: id
+    type: actionTypes.PURCHASE_BURGER_SUCCESS,
+    orderData: orderData
   };
 };
 export const purchaseBurgerFail = error => {
@@ -26,16 +25,23 @@ export const setOrderSuccessMessage = show => {
     show: show
   };
 };
+
 export const purchaseBurger = (orderData, token) => {
   return dispatch => {
     dispatch(purchaseBurgerStart());
-    Axios.post("/orders.json?auth=" + token, orderData)
-      .then(response => {
-        dispatch(purchaseBurgerSucces(response.data.name, orderData));
+
+    const config={headers: {authorization: "Bearer "+token}};
+
+    Axios.post("/orders",orderData, config )
+      .then(() => {
+
+        dispatch(purchaseBurgerSuccess(orderData));
         dispatch(setOrderSuccessMessage(true));
+
         setTimeout(() => {
           dispatch(setOrderSuccessMessage(false));
         }, 3000);
+
       })
       .catch(error => {
         dispatch(purchaseBurgerFail(error));
@@ -59,28 +65,21 @@ export const fetchOrdersFail = error => {
     error: error
   };
 };
-export const fetchOrdersSucces = orders => {
+export const fetchOrdersSuccess = orders => {
   return {
-    type: actionTypes.FETCH_ORDERS_SUCCES,
+    type: actionTypes.FETCH_ORDERS_SUCCESS,
     orders: orders
   };
 };
-export const fetchOrders = (token, userId) => {
+export const fetchOrders = (token) => {
   return dispatch => {
     dispatch(fetchOrdersStart());
-    const queryParams =
-      "auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
-    Axios.get("/orders.json?" + queryParams)
-      .then(response => {
-        const orders = [];
 
-        for (let order in response.data) {
-          orders.push({
-            ...response.data[order],
-            id: order
-          });
-        }
-        dispatch(fetchOrdersSucces(orders));
+    const config={headers: {authorization: "Bearer "+token}};
+
+    Axios.get("/orders",config)
+      .then(response => {
+        dispatch(fetchOrdersSuccess(response.data));
       })
       .catch(error => {
         dispatch(fetchOrdersFail(error));
