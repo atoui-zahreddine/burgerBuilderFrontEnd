@@ -7,7 +7,7 @@ import * as actionCreators from "../../store/actions/index";
 import Aux from "../../hoc/Auxiliary/Auxiliary";
 
 class Checkout extends React.Component {
-  componentDidMount(){
+  componentDidMount() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
@@ -23,7 +23,7 @@ class Checkout extends React.Component {
     }
   };
   checkoutCanceledHandler = () => {
-    this.props.history.replace('/');
+    this.props.history.replace("/");
   };
   render() {
     let summary = <Redirect to="/" />;
@@ -63,11 +63,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    resetIngredientsHandler: () => dispatch(actionCreators.initIgredients())
+    resetIngredientsHandler: () => dispatch(actionCreators.initIngredients())
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Checkout);
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

@@ -12,7 +12,7 @@ export const removeIngredient = ingName => {
     ingName: ingName
   };
 };
-export const initIgredients = () => {
+export const initIngredients = () => {
   return {
     type: actionTypes.SET_INGREDIENTS
   };

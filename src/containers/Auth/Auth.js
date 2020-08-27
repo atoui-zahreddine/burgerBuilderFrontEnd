@@ -51,7 +51,7 @@ class Auth extends React.Component {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 
-    if ( this.props.buildingBurger && this.props.redirectPath === "/" ) {
+    if (this.props.buildingBurger && this.props.redirectPath === "/") {
       this.props.onSetAuthRedirectPath("/checkout");
     }
 
@@ -64,7 +64,7 @@ class Auth extends React.Component {
       this.props.onResetIngredients();
     }
     if (this.props.error) {
-      this.props.onRemoveAuthErros();
+      this.props.onRemoveAuthErrors();
     }
   }
   checkValidity = (value, rules) => {
@@ -165,7 +165,7 @@ class Auth extends React.Component {
             />
           );
         })}
-        <Button btnType="Success" clicked={this.onAuth}>
+        <Button btnType="Success" clicked={this.submitHandler}>
           {this.state.isSignup ? " Sign Up" : " Sign In"}
         </Button>
       </form>
@@ -203,12 +203,9 @@ const mapDispatchToProps = dispatch => {
     onAuth: (email, password, isSignup) =>
       dispatch(actions.auth(email, password, isSignup)),
     onSetAuthRedirectPath: path => dispatch(actions.setAuthRedirectPath(path)),
-    onResetIngredients: () => dispatch(actions.initIgredients()),
-    onRemoveAuthErros: () => dispatch(actions.removeAuthErrors())
+    onResetIngredients: () => dispatch(actions.initIngredients()),
+    onRemoveAuthErrors: () => dispatch(actions.removeAuthErrors())
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

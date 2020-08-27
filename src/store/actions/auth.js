@@ -25,7 +25,7 @@ const authFail = error => {
     error: error
   };
 };
-const authSuccess = (token) => {
+const authSuccess = token => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     token: token
@@ -38,25 +38,24 @@ export const auth = (email, password, isSignup) => {
       password: password
     };
     dispatch(authStart());
-    let url =
-      "http://localhost:8080/users";
+    let url = "http://localhost:8080/users";
     if (!isSignup) {
-      url =
-        "http://localhost:8080/auth/signin";
+      url = "http://localhost:8080/auth/signin";
     }
     axios
       .post(url, authData)
       .then(response => {
-        localStorage.setItem("token", response.data.token);
+        const { token, expiresIn } = response.data;
+
+        localStorage.setItem("token", token);
 
         const expirationDate = new Date(
-          new Date().getTime() + response.data.expiresIn * 1000
+          new Date().getTime() + expiresIn * 1000
         );
 
-        localStorage.setItem("expirationDate", expirationDate);
+        localStorage.setItem("expirationDate", expirationDate.toDateString());
         dispatch(authSuccess(response.data.token));
-        dispatch(checkAuthTimeout(response.data.expiresIn));
-
+        dispatch(checkAuthTimeout(expiresIn));
       })
       .catch(error => {
         dispatch(authFail(error));
@@ -84,11 +83,11 @@ export const authCheckState = () => {
             (expirationDate.getTime() - new Date().getTime()) / 1000
           )
         );
-      }else{
+      } else {
         dispatch(authFail(null));
         dispatch(authLogout());
       }
-    }else{
+    } else {
       dispatch(authFail(null));
     }
   };

@@ -1,6 +1,7 @@
-import axios from 'axios';
- const instance = axios.create({
-     baseURL:'http://localhost:8080'
- });
+import axios from "axios";
+const instance = axios.create({
+  baseURL: "http://localhost:8080",
+  config: { withCredentials: true }
+});
 
- export default instance;
+export default instance;

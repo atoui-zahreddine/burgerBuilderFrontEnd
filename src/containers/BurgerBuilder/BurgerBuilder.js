@@ -18,7 +18,7 @@ class BurgerBuilder extends Component {
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     this.props.onInitHandler();
   }
-  static getDerivedStateFromProps(props,state){
+  static getDerivedStateFromProps(props, state) {
     if (props.OrderSuccess) {
       notification["success"]({
         message: "Order Successfully made",
@@ -112,14 +112,11 @@ const mapDispatchToProps = dispatch => {
       dispatch(BurgerBuilderActions.addIngredient(ingName)),
     onRemoveHandler: ingName =>
       dispatch(BurgerBuilderActions.removeIngredient(ingName)),
-    onInitHandler: () => dispatch(BurgerBuilderActions.initIgredients()),
+    onInitHandler: () => dispatch(BurgerBuilderActions.initIngredients()),
     onInitPurchase: () => dispatch(BurgerBuilderActions.purchaseInit()),
     onResetBuildingBurger: () =>
       dispatch(BurgerBuilderActions.resetBuildingBurger())
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BurgerBuilder);
+export default connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder);

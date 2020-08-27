@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import Axios from "../../axios";
 
-export const purchaseBurgerSuccess = (orderData) => {
+export const purchaseBurgerSuccess = orderData => {
   return {
     type: actionTypes.PURCHASE_BURGER_SUCCESS,
     orderData: orderData
@@ -30,18 +30,16 @@ export const purchaseBurger = (orderData, token) => {
   return dispatch => {
     dispatch(purchaseBurgerStart());
 
-    const config={headers: {authorization: "Bearer "+token}};
+    const config = { headers: { authorization: "Bearer " + token } };
 
-    Axios.post("/orders",orderData, config )
+    Axios.post("/orders", orderData, config)
       .then(() => {
-
         dispatch(purchaseBurgerSuccess(orderData));
         dispatch(setOrderSuccessMessage(true));
 
         setTimeout(() => {
           dispatch(setOrderSuccessMessage(false));
         }, 3000);
-
       })
       .catch(error => {
         dispatch(purchaseBurgerFail(error));
@@ -71,13 +69,13 @@ export const fetchOrdersSuccess = orders => {
     orders: orders
   };
 };
-export const fetchOrders = (token) => {
+export const fetchOrders = token => {
   return dispatch => {
     dispatch(fetchOrdersStart());
 
-    const config={headers: {authorization: "Bearer "+token}};
+    const config = { headers: { authorization: "Bearer " + token } };
 
-    Axios.get("/orders",config)
+    Axios.get("/orders", config)
       .then(response => {
         dispatch(fetchOrdersSuccess(response.data));
       })
